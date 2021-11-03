@@ -14,6 +14,7 @@ sintagma_nominal(Pers,Num,Gend,S0,S):-pronombre(Pers,Num,Gend,S0,S).
 sintagma_nominal(Pers,Num,Gend,S0,S):-complemento_directo(Pers,Num,Gend,S0,S).
 
 complemento_directo(Pers,Num,Gend,S0,S):-nombre(Pers,Num,Gend,S0,S).
+complemento_directo(Pers,Num,Gend,S0,S):-adjetivo(Num,Gend,S0,S).
 complemento_directo(Pers,Num,Gend,S0,S):-nombre(Pers,Num,Gend,S0,S1),adjetivo(Num,Gend,S1,S).
 complemento_directo(Pers,Num,Gend,S0,S):-determinante(Num,Gend,S0,S1),nombre(Pers,Num,Gend,S1,S).
 complemento_directo(Pers,Num,Gend,S0,S):-determinante(Num,Gend,S0,S1),nombre(Pers,Num,Gend,S1,S2),adjetivo(Num,Gend,S2,S).
@@ -97,6 +98,7 @@ adjetivo(s,m,['normal'|S],S).
 adjetivo(s,m,[_NumVeces,'veces','a','la','semana'|S],S).
 
 verbo_infinitivo(['llevar'|S],S).
+verbo_infinitivo(['ser'|S],S).
 verbo_infinitivo(['llegar'|S],S).
 verbo_infinitivo(['comer'|S],S).
 verbo_infinitivo(['consumir'|S],S).
@@ -104,6 +106,8 @@ verbo_infinitivo(['a correr'|S],S).
 verbo_infinitivo(['a nadar'|S],S).
 verbo_infinitivo(['a caminar'|S],S).
 verbo_infinitivo(['hacer'|S],S).
+verbo_infinitivo(['estar'|S],S).
+verbo_infinitivo(['seguir'|S],S).
 
 verbo_transitivo(p,s,['salgo'|S],S).
 verbo_transitivo(p,s,['corro'|S],S).
@@ -122,6 +126,7 @@ verbo_transitivo(p,s,['había','pensado'|S],S).
 verbo_transitivo(p,s,['había','calculado'|S],S).
 verbo_transitivo(p,s,['prefiero'|S],S).
 verbo_transitivo(p,s,['hago'|S],S).
+verbo_transitivo(t,s,['gusta'|S],S).
 
 pronombre(p,s,n,['Yo'|S],S).
 pronombre(p,s,n,['yo'|S],S).
@@ -147,15 +152,6 @@ saludo(['Hola'|S],S).
 saludo(['Buenos','dias'|S],S).
 saludo(['Buenas','tardes'|S],S).
 saludo(['Buenas','noches'|S],S).
-
-miembro(H,[H|_T]).
-miembro(X,[_H|T]) :-  miembro(X,T).
-
-ask_whatever:-
-my_read(ListResponse),
-oracion(ListResponse,[]),
-miembro('Hola',ListResponse).
-
 
 my_read(List):-
 read_string(user,"\n","\r",_,String),
