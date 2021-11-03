@@ -67,10 +67,11 @@ nombre(t,s,f,['hipercolosterolemia'|S],S).
 nombre(t,s,f,['con','hipercolosterolemia'|S],S).
 nombre(t,s,m,['sobrepeso'|S],S).
 nombre(t,s,m,['con','sobrepeso'|S],S).
-nombre(t,s,m,['desnutrición'|S],S).
-nombre(t,s,m,['con','desnutrición'|S],S).
+nombre(t,s,m,['desnutricion'|S],S).
+nombre(t,s,m,['con','desnutricion'|S],S).
 nombre(t,s,m,['desnutrido'|S],S).
 nombre(t,s,m,['estilo','de','vida'|S],S).
+nombre(t,s,f,['vida'|S],S).
 nombre(t,s,f,['dieta'|S],S).
 nombre(t,s,f,['preferencia'|S],S).
 nombre(t,s,m,['ciclismo'|S],S).
@@ -110,6 +111,7 @@ verbo_infinitivo(['estar'|S],S).
 verbo_infinitivo(['seguir'|S],S).
 verbo_infinitivo(['tener'|S],S).
 verbo_infinitivo(['conseguir'|S],S).
+verbo_infinitivo(['obtener'|S],S).
 
 verbo_transitivo(p,s,['salgo'|S],S).
 verbo_transitivo(p,s,['corro'|S],S).

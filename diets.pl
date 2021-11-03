@@ -52,7 +52,7 @@ Merienda tarde:  1 taza de café o té.
   1 Fruta. 
 Cena:  1 taza de ensalada. 
   300g de pollo a la plancha. 
-1 lata de atún mediana en agua.') :-  write('Dieta 1:'),nl,
+1 lata de atún mediana en agua.') :-
   tipo(T), /*write('Tipo:'),tab(1), write(T), nl,*/ miembro(T, [proteina, keto, []]),
   calorias(Cal), (Cal=<4000, Cal>=2900), /*write('Calorías:'),tab(1), write(Cal), nl,*/
   padecimientos(P), miembro(P, [desnutrido, diabetes, dislipidemia, []]), /*write('Padecimiento:'),tab(1), write(P), nl,*/
@@ -77,7 +77,7 @@ Almuerzo:  2 tazas de ensalada Mixta
 Cena:  2 tazas de ensalada verde mixta. 
   1 tortilla de trigo. 
 1 lata de atún mediana en agua. 
-  1/8 de aguacate. ') :- write('Dieta 2:'),nl,
+  1/8 de aguacate. ') :-
     tipo(T), miembro(T, [pescatariana, []]), 
     calorias(Cal), (Cal<3000, Cal>=2000), 
     padecimientos(P), miembro(P, [sobrepeso, desnutrido, diabetes, dislipidemia, []]), 
@@ -93,7 +93,7 @@ con 1 taza de vegetales.
   Merienda tarde:  1 taza de café o té. 
 tortillas con queso de soya.
 Cena:  1 taza de ensalada
-Pasta con salsa de tomate.') :- write('Dieta 3:'),nl,
+Pasta con salsa de tomate.') :-
   tipo(T), miembro(T, [vegana, []]), 
   calorias(Cal), (Cal=<2600, Cal>=1200), 
   padecimientos(P), miembro(P, [hipercolesterolemia, sobrepeso, diabetes, dislipidemia, []]), 
@@ -107,7 +107,7 @@ Merienda Mañana: 1 taza leche.
   1 cdta de mantequilla de maní. 
 Almuerzo:  Salchichas con jamón. 
   Merienda tarde: 100g de queso.
-Cena: Filet de carne.') :- write('Dieta 4:'),nl,
+Cena: Filet de carne.') :-
   tipo(T), miembro(T, [keto, []]), 
   calorias(Cal), /*write('Calorías: '), write(Cal),*/ (Cal<2700, Cal>=1600), 
   padecimientos(P), miembro(P, [sobrepeso, []]), 
@@ -128,7 +128,7 @@ Merienda tarde:  1 taza de café o té.
 1 Fruta. 
 Cena:  1 taza de ensalada. 
   2 tazas de garbanzos.
-.') :-  write('Dieta 5:'),nl,
+.') :-
   tipo(T), /*write('Tipo:'),tab(1), write(T), nl,*/ miembro(T, [vegana, proteina, pescatariana, []]), 
   calorias(Cal), /*write('Calorías:'),tab(1), write(Cal), nl,*/ (Cal=<3900, Cal>=2400), 
   padecimientos(P), miembro(P, [hipercolesterolemia, desnutrido, diabetes, dislipidemia, []]), /*write('Padecimiento:'),tab(1), write(P), nl, */
