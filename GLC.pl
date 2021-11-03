@@ -1,14 +1,14 @@
 %Oración inicial de Saludo a Nutritec
 
 oracion(S0,S):-agradecimiento(S0,S1),sintagma_nominal(Pers,Num,Gend,S1,S2),sintagma_verbal(Pers,Num,S2,S).
-oracion(S0,S):-agradecimiento(S0,S1),advebio_negacion_afirmación(S1,S2),sintagma_nominal(Pers,Num,Gend,S2,S3),sintagma_verbal(Pers,Num,S3,S).
+oracion(S0,S):-agradecimiento(S0,S1),advebio_negacion_afirmacion(S1,S2),sintagma_nominal(Pers,Num,Gend,S2,S3),sintagma_verbal(Pers,Num,S3,S).
 oracion(S0,S):-sintagma_nominal(Pers,Num,_Gend,S0,S1),sintagma_verbal(Pers,Num,S1,S).
-oracion(S0,S):-advebio_negacion_afirmación(S0,S1),sintagma_nominal(Pers,Num,_Gend,S1,S2),sintagma_verbal(Pers,Num,S2,S).
+oracion(S0,S):-advebio_negacion_afirmacion(S0,S1),sintagma_nominal(Pers,Num,_Gend,S1,S2),sintagma_verbal(Pers,Num,S2,S).
 oracion(S0,S):-sintagma_verbal(Pers,Num,S0,S).
 oracion(S0,S):-sintagma_nominal(Pers,Num,Gend,S0,S).
 oracion(S0,S):-agradecimiento(S0,S).
 oracion(S0,S):-saludoGeneral(S0,S).
-oracion(S0,S):-advebio_negacion_afirmación(S0,S).
+oracion(S0,S):-advebio_negacion_afirmacion(S0,S).
 
 sintagma_nominal(Pers,Num,Gend,S0,S):-pronombre(Pers,Num,Gend,S0,S).
 sintagma_nominal(Pers,Num,Gend,S0,S):-complemento_directo(Pers,Num,Gend,S0,S).
@@ -77,7 +77,7 @@ nombre(t,s,m,['ciclismo'|S],S).
 nombre(t,s,f,['natación'|S],S).
 nombre(t,s,m,['deporte'|S],S).
 nombre(t,p,f,['prefrencias'|S],S).
-nombre(t,p,f,[_NumCalorias,'calorías'|S],S).
+nombre(t,p,f,[_NumCalorias,'calorias'|S],S).
 nombre(t,s,m,['activo'|S],S).
 nombre(t,p,f,[_NumVeces,'veces','a','la','semana'|S],S).
 
@@ -138,14 +138,14 @@ agradecimiento(['Muchas','Gracias,'|S],S).
 agradecimiento(['Gracias'|S],S).
 agradecimiento(['Muchas','Gracias'|S],S).
 
-advebio_negacion_afirmación(['sí'|S],S).
-advebio_negacion_afirmación(['Sí'|S],S).
-advebio_negacion_afirmación(['sí,'|S],S).
-advebio_negacion_afirmación(['Sí,'|S],S).
-advebio_negacion_afirmación(['no'|S],S).
-advebio_negacion_afirmación(['No'|S],S).
-advebio_negacion_afirmación(['no,'|S],S).
-advebio_negacion_afirmación(['No,'|S],S).
+advebio_negacion_afirmacion(['sí'|S],S).
+advebio_negacion_afirmacion(['Sí'|S],S).
+advebio_negacion_afirmacion(['sí,'|S],S).
+advebio_negacion_afirmacion(['Sí,'|S],S).
+advebio_negacion_afirmacion(['no'|S],S).
+advebio_negacion_afirmacion(['No'|S],S).
+advebio_negacion_afirmacion(['no,'|S],S).
+advebio_negacion_afirmacion(['No,'|S],S).
 
 nombreNutriTec(['NutriTec'|S],S).
 saludo(['Hola'|S],S).

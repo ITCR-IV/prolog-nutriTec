@@ -44,8 +44,8 @@ askTipo(X,_):-  % Si ya se conoce entonces solo se toma la conocida
   known(tipo,X), !.
 
 askTipo(X,Menu):-  % Si no se conoce entonces se pregunta y se guarda como "known"
-  write('¿Tiene alguna preferencia para el tipo de dieta a realizar?'),
-  nl,
+  write('¿Tiene alguna preferencia para el tipo de dieta a realizar entre las siguientes opciones?'),
+  nl, display_menu(Menu),
   my_read(ListResponse),
   askTipoAux(X,ListResponse,Menu).
 

@@ -21,10 +21,10 @@ dieta('Es necesario aumentar la actividad física si desea consumir tantas calor
   actividad(A), (A =< 1).
 
 dieta('Es imposible asignarle una dieta vegana si no le gustan los vegetales'):-
-  tipo(X), X = vegana, comida(X), X = vegetales.
+  tipo(X), X = vegana, comida(C), C = vegetales.
 
 dieta('Es imposible asignarle una dieta pescatariana si no le gusta el pescado'):-
-  tipo(X), X = pescatariana, comida(X), X = pescado.
+  tipo(X), X = pescatariana, comida(C), C = pescado.
 
 dieta('Si padece de sobrepeso no debe consumir tantas calorías diarias'):-
   padecimientos(X), X = sobrepeso, calorias(Cal), (Cal >= 3000).
