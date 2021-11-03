@@ -1,11 +1,11 @@
 %Oración inicial de Saludo a Nutritec
 
-oracion(S0,S):-agradecimiento(S0,S1),sintagma_nominal(Pers,Num,Gend,S1,S2),sintagma_verbal(Pers,Num,S2,S).
-oracion(S0,S):-agradecimiento(S0,S1),advebio_negacion_afirmacion(S1,S2),sintagma_nominal(Pers,Num,Gend,S2,S3),sintagma_verbal(Pers,Num,S3,S).
+oracion(S0,S):-agradecimiento(S0,S1),sintagma_nominal(Pers,Num,_Gend,S1,S2),sintagma_verbal(Pers,Num,S2,S).
+oracion(S0,S):-agradecimiento(S0,S1),advebio_negacion_afirmacion(S1,S2),sintagma_nominal(Pers,Num,_Gend,S2,S3),sintagma_verbal(Pers,Num,S3,S).
 oracion(S0,S):-sintagma_nominal(Pers,Num,_Gend,S0,S1),sintagma_verbal(Pers,Num,S1,S).
 oracion(S0,S):-advebio_negacion_afirmacion(S0,S1),sintagma_nominal(Pers,Num,_Gend,S1,S2),sintagma_verbal(Pers,Num,S2,S).
-oracion(S0,S):-sintagma_verbal(Pers,Num,S0,S).
-oracion(S0,S):-sintagma_nominal(Pers,Num,Gend,S0,S).
+oracion(S0,S):-sintagma_verbal(_Pers,_Num,S0,S).
+oracion(S0,S):-sintagma_nominal(_Pers,_Num,_Gend,S0,S).
 oracion(S0,S):-agradecimiento(S0,S).
 oracion(S0,S):-saludoGeneral(S0,S).
 oracion(S0,S):-advebio_negacion_afirmacion(S0,S).
@@ -14,7 +14,7 @@ sintagma_nominal(Pers,Num,Gend,S0,S):-pronombre(Pers,Num,Gend,S0,S).
 sintagma_nominal(Pers,Num,Gend,S0,S):-complemento_directo(Pers,Num,Gend,S0,S).
 
 complemento_directo(Pers,Num,Gend,S0,S):-nombre(Pers,Num,Gend,S0,S).
-complemento_directo(Pers,Num,Gend,S0,S):-adjetivo(Num,Gend,S0,S).
+complemento_directo(_Pers,Num,Gend,S0,S):-adjetivo(Num,Gend,S0,S).
 complemento_directo(Pers,Num,Gend,S0,S):-nombre(Pers,Num,Gend,S0,S1),adjetivo(Num,Gend,S1,S).
 complemento_directo(Pers,Num,Gend,S0,S):-determinante(Num,Gend,S0,S1),nombre(Pers,Num,Gend,S1,S).
 complemento_directo(Pers,Num,Gend,S0,S):-determinante(Num,Gend,S0,S1),nombre(Pers,Num,Gend,S1,S2),adjetivo(Num,Gend,S2,S).
@@ -108,6 +108,8 @@ verbo_infinitivo(['a caminar'|S],S).
 verbo_infinitivo(['hacer'|S],S).
 verbo_infinitivo(['estar'|S],S).
 verbo_infinitivo(['seguir'|S],S).
+verbo_infinitivo(['tener'|S],S).
+verbo_infinitivo(['conseguir'|S],S).
 
 verbo_transitivo(p,s,['salgo'|S],S).
 verbo_transitivo(p,s,['corro'|S],S).

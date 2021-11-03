@@ -66,17 +66,17 @@ askTipoAux(X,ListResponse,_Menu):-
   !,
   asserta(known(tipo,X)).
 
-askTipoAux(X,_ListResponse,Menu):-
+askTipoAux(_X,_ListResponse,_Menu):-
   write('No compredí lo que indicaste, ¿Puedes volverlo a formular?'),
   !,
   fail.
 
 % Preguntar calorías
-askCalorias(X, Min, Max):-
+askCalorias(X, _Min, _Max):-
   known(calorias,X),
   !.
   
-askCalorias(X, Min, Max):-
+askCalorias(X, _Min, _Max):-
   write('¿Tienes pensado/a una cantidad específica de calorías diarias por consumir?'),
   nl,
   my_read(ListResponse),
@@ -101,7 +101,7 @@ askCaloriasAux(X,ListResponse):-
   !,
   asserta(known(calorias,X)).
   
-askCaloriasAux(X,ListResponse):-
+askCaloriasAux(_X,ListResponse):-
   oracion(ListResponse,[]),
   miembro(Atom,ListResponse),
   atom_number(Atom,Y),
@@ -110,7 +110,7 @@ askCaloriasAux(X,ListResponse):-
   !,
   fail.
   
-askCaloriasAux(X,ListResponse):-
+askCaloriasAux(_X,ListResponse):-
   oracion(ListResponse,[]),
   miembro(Atom,ListResponse),
   atom_number(Atom,Y),
@@ -119,24 +119,86 @@ askCaloriasAux(X,ListResponse):-
   !,
   fail.
 
-askCaloriasAux(X,ListResponse):-
+askCaloriasAux(_X,_ListResponse):-
   write('No compredí lo que indicaste, ¿Puedes volverlo a formular?'),
   !,
   fail.
 
 % Preguntar padecimientos
-askPadecimientos(X,_):- 
-   known(padecimientos, X), !.
-askPadecimientos(X,Menu):-
+
+askPadecimientos(X,_):-  % Si ya se conoce entonces solo se toma la conocida
+  known(padecimientos,X), !.
+
+askPadecimientos(X,Menu):-  % Si no se conoce entonces se pregunta y se guarda como "known"
   write('Tiene alguna enfermedad que pueda afectar su dieta, como las siguientes opciones?'),
-  nl, display_menu(Menu), read(X), asserta(known(padecimientos,X)).
+  nl, display_menu(Menu),
+  my_read(ListResponse),
+  askPadecimientosAux(X,ListResponse,Menu).
+
+askPadecimientos(X,Menu):- askPadecimientos(X,Menu).
+
+askPadecimientosAux(X,ListResponse,ListPadecimientos):-
+  oracion(ListResponse,[]),
+  miembro(X,ListResponse),
+  miembro(X,ListPadecimientos),
+  !,
+  asserta(known(padecimientos,X)).
+
+askPadecimientosAux(X,ListResponse,_ListPadecimientos):-
+  oracion(ListResponse,[]),
+  miembro(Atom,ListResponse),
+  Atom='No',
+  X=[],
+  !,
+  asserta(known(padecimientos,X)).
+
+askPadecimientosAux(_X,_ListResponse,_ListPadecimientos):-
+  write('No compredí lo que indicaste, ¿Puedes volverlo a formular?'),
+  !,
+  fail.
 
 % Preguntar nivel de actividad
 askActividad(X):-
   known(actividad, X), !.
-askActividad(X):- 
+  
+askActividad(X):-
   write('Cuántas veces a la semana es activo/a físicamente?'),
-  nl, read(X), asserta(known(actividad,X)).
+  nl,
+  my_read(ListResponse),
+  askActividadAux(X,ListResponse).
+
+askActividad(X):- askActividad(X).
+
+askActividadAux(X,ListResponse):-
+  oracion(ListResponse,[]),
+  miembro(Atom,ListResponse),
+  atom_number(Atom,X),
+  X<7,
+  !,
+  asserta(known(actividad,X)).
+
+askActividadAux(X,ListResponse):-
+  oracion(ListResponse,[]),
+  miembro(Atom,ListResponse),
+  atom_number(Atom,X),
+  X>7,
+  !,
+  write('No se tienen dietas disponibles para una cantidad tan alta de actividad física, indique una cantidad menor'),
+  !,
+  fail.
+
+askActividadAux(X,ListResponse):-
+  oracion(ListResponse,[]),
+  miembro(Atom,ListResponse),
+  Atom='No',
+  X=0,
+  !,
+  asserta(known(actividad,X)).
+
+askActividadAux(_X,_ListResponse):-
+  write('No compredí lo que indicaste, ¿Puedes volverlo a formular?'),
+  !,
+  fail.
 
 % Preguntar comida no deseada
 askComida(X,_Comidas):-
@@ -152,11 +214,7 @@ askComida(X,Comidas):-askComida(X,Comidas).
 
 askComidaAux(X,ListResponse,Comidas):-
   oracion(ListResponse,[]),
-  write(ListResponse),
-  nl,
   miembro(X,ListResponse),
-  write(X),
-  nl,
   miembro(X,Comidas),
   !,
   asserta(known(comida,X)).
@@ -169,7 +227,7 @@ askComidaAux(X,ListResponse,_Comidas):-
   !,
   asserta(known(comida,X)).
 
-askComidaAux(X,_ListResponse,Comidas):-
+askComidaAux(_X,_ListResponse,_Comidas):-
   write('No compredí lo que indicaste, ¿Puedes volverlo a formular?'),
   !,
   fail.
