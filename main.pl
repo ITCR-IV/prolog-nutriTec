@@ -13,7 +13,7 @@ main:- identify.
 identify:-
 	retractall(known(_,_)),         % clear stored information
 	dieta(X),
-	write('Su dieta sería:'),nl,write(X),nl.
+	write(X),nl.
 identify:-
 	write('Sus selecciones no calzan con ninguna dieta.'),nl.
 
@@ -38,7 +38,7 @@ askPadecimientos(X,_):-
 	 known(padecimientos, X), !.
 askPadecimientos(X,Menu):-
 	write('Tiene alguna enfermedad que pueda afectar su dieta, como las siguientes opciones?'),
-	nl, display_menu(Menu), read(X), asserta(known(padecimientos,sobrepeso)).
+	nl, display_menu(Menu), read(X), asserta(known(padecimientos,X)).
 
 % Preguntar nivel de actividad
 askActividad(X):-

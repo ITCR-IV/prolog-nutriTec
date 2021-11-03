@@ -15,8 +15,29 @@ posibles_actividades([0, 1, 2, 3, 4, 5, 6, 7]).
 % comidas: la comida que traigan
 posibles_comidas(['gallo pinto', avena, granola, salchicha, jamón, pescado, carne, huevo, verduras, aguacate, leche, maní, fruta, papa, carne, tortilla, queso, pollo, atún]).
 
+%%% Regañadas
+dieta('Es necesario aumentar la actividad física si desea consumir tantas calorías diarias'):-
+	calorias(Cal), (Cal >= 3000),
+	actividad(A), (A =< 1).
+
+dieta('Es imposible asignarle una dieta vegana si no le gustan los vegetales'):-
+	tipo(X), X = vegana, comida(X), X = vegetales.
+
+dieta('Es imposible asignarle una dieta pescatariana si no le gusta el pescado'):-
+	tipo(X), X = pescatariana, comida(X), X = pescado.
+
+dieta('Si padece de sobrepeso no debe consumir tantas calorías diarias'):-
+	padecimientos(X), X = sobrepeso, calorias(Cal), (Cal >= 3000).
+
+dieta('Si está desnutrido debe consumir más calorías diarias'):-
+	padecimientos(X), X = desnutrido, calorias(Cal), (Cal < 2000).
+
+dieta('Para mantener tanta actividad física debe de consumir más calorías'):-
+	calorias(Cal), (Cal =< 2000),
+	actividad(A), (A >= 4).
+
 %%% DIETA 1
-dieta('
+dieta('Su dieta sería:
 Desayuno:  4 Huevos picados con verduras. 
 	1 de aguacate. 
 Merienda Mañana: 1 taza leche. 
@@ -39,7 +60,7 @@ Cena:  1 taza de ensalada.
 	comida(C), not(miembro(C, [huevo, verduras, aguacate, leche, maní, fruta, papa, carne, tortilla, queso, pollo, atún])).
 
 %%% DIETA 2
-dieta('
+dieta('Su dieta sería:
 Desayuno:  ½ taza de gallo pinto. 
 	1 Huevo + rebanada de queso blanco. 
 1 cdta de aceite de oliva para preparar el huevo. 
@@ -58,13 +79,13 @@ Cena:  2 tazas de ensalada verde mixta.
 1 lata de atún mediana en agua. 
 	1/8 de aguacate. ') :- write('Dieta 2:'),nl,
 		tipo(T), miembro(T, [pescatariana, []]), 
-		calorias(Cal), (Cal=<3300, Cal>=2000), 
+		calorias(Cal), (Cal<3000, Cal>=2000), 
 		padecimientos(P), miembro(P, [sobrepeso, desnutrido, diabetes, dislipidemia, []]), 
 		actividad(A), miembro(A, [0, 1, 2, 3]), 
 		comida(C), not(miembro(C, [huevo, queso, aguacate, leche, frijoles, fruta, garbanzos, papaya, lenteja, pescado, atún, queso, tortilla])).
 
 %%% DIETA 3
-dieta('
+dieta('Su dieta sería:
 Desayuno:  1 taza de gallo pinto o avena.
 Merienda Mañana: 1 taza de frutas con granola.
 Almuerzo:  Sopa de garbanzos,
@@ -80,7 +101,7 @@ Pasta con salsa de tomate.') :- write('Dieta 3:'),nl,
 	comida(C), not(miembro(C, ['gallo pinto', verduras, garbanzos, avena, fruta, tortilla, queso, soya])).
 
 %%% DIETA 4
-dieta('
+dieta('Su dieta sería:
 Desayuno:  3 huevos.
 Merienda Mañana: 1 taza leche. 
 	1 cdta de mantequilla de maní. 
@@ -88,13 +109,13 @@ Almuerzo:  Salchichas con jamón.
 	Merienda tarde: 100g de queso.
 Cena: Filet de carne.') :- write('Dieta 4:'),nl,
 	tipo(T), miembro(T, [keto, []]), 
-	calorias(Cal), /*write('Calorías: '), write(Cal),*/ (Cal=<2600, Cal>=1200), 
+	calorias(Cal), /*write('Calorías: '), write(Cal),*/ (Cal<2700, Cal>=1600), 
 	padecimientos(P), miembro(P, [sobrepeso, []]), 
-	actividad(A), miembro(A, [1, 2, 3, 4, 5]), 
+	actividad(A), miembro(A, [0, 1, 2, 3, 4, 5]), 
 	comida(C), not(miembro(C, [huevo, leche, maní, salchicha, jamón, queso, carne])).
 
 %%% DIETA 5
-dieta('
+dieta('Su dieta sería:
 Desayuno:  2 tazas de gallo pinto
 1 de aguacate. 
 Merienda Mañana: 1 taza de fruta. 
@@ -109,7 +130,7 @@ Cena:  1 taza de ensalada.
 	2 tazas de garbanzos.
 .') :- 	write('Dieta 5:'),nl,
 	tipo(T), /*write('Tipo:'),tab(1), write(T), nl,*/ miembro(T, [vegana, proteina, pescatariana, []]), 
-	calorias(Cal), /*write('Calorías:'),tab(1), write(Cal), nl,*/ (Cal=<3900, Cal>=2300), 
-	padecimientos(P), miembro(P, [hipercolesterolemia, sobrepeso, desnutrido, diabetes, dislipidemia, []]), /*write('Padecimiento:'),tab(1), write(P), nl, */
-	actividad(A), miembro(A, [1, 2, 3, 4, 5, 6, 7]), /*write('Nivel de actividad:'), tab(1), write(A), nl, */
+	calorias(Cal), /*write('Calorías:'),tab(1), write(Cal), nl,*/ (Cal=<3900, Cal>=2400), 
+	padecimientos(P), miembro(P, [hipercolesterolemia, desnutrido, diabetes, dislipidemia, []]), /*write('Padecimiento:'),tab(1), write(P), nl, */
+	actividad(A), miembro(A, [2, 3, 4, 5, 6, 7]), /*write('Nivel de actividad:'), tab(1), write(A), nl, */
 	comida(C), /*write('comidas:'),tab(1),write(C), nl,*/ not(miembro(C, ['gallo pinto', aguacate, fruta, maní, vegetales, papa, garbanzos, granola, fruta])).
