@@ -104,6 +104,7 @@ adjetivo(p,f,['sanas'|S],S).
 adjetivo(s,f,['keto'|S],S).
 adjetivo(s,f,['vegana'|S],S).
 adjetivo(s,f,['pescaatriana'|S],S).
+adjetivo(s,f,['proteina'|S],S).
 adjetivo(s,f,['proteica'|S],S).
 adjetivo(s,f,['normal'|S],S).
 adjetivo(s,m,['normal'|S],S).

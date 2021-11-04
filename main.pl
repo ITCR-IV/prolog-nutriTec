@@ -61,13 +61,12 @@ askTipoAux(X,ListResponse,Menu):-
 askTipoAux(X,ListResponse,_Menu):-
   oracion(ListResponse,[]),
   miembro(Atom,ListResponse),
-  Atom='No',
-  X=[],
+  (Atom='No', X=[] ; Atom='proteica', X=proteina),
   !,
   asserta(known(tipo,X)).
 
 askTipoAux(_X,_ListResponse,_Menu):-
-  write('No compredí lo que indicaste, ¿Puedes volverlo a formular?'),
+  write('No comprendí lo que indicaste, ¿Puedes volverlo a formular?'),
   !,
   fail.
 
