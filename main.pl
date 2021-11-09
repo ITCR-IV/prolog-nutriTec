@@ -172,7 +172,7 @@ askActividadAux(X,ListResponse):-
   oracion(ListResponse,[]),
   miembro(Atom,ListResponse),
   atom_number(Atom,X),
-  X<7,
+  X=<7,
   !,
   asserta(known(actividad,X)).
 
