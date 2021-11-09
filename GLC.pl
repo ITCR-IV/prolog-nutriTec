@@ -71,7 +71,9 @@ nombre(t,s,m,['atún'|S],S).
 nombre(t,s,m,['mani'|S],S).
 nombre(t,s,f,['carne'|S],S).
 nombre(t,s,f,['diabetes'|S],S).
+nombre(t,s,f,['con','diabetes'|S],S).
 nombre(t,s,f,['dislipidemia'|S],S).
+nombre(t,s,f,['con','dislipidemia'|S],S).
 nombre(t,s,f,['hipercolosterolemia'|S],S).
 nombre(t,s,f,['con','hipercolosterolemia'|S],S).
 nombre(t,s,m,['sobrepeso'|S],S).
@@ -117,9 +119,9 @@ verbo_infinitivo(['ser'|S],S).
 verbo_infinitivo(['llegar'|S],S).
 verbo_infinitivo(['comer'|S],S).
 verbo_infinitivo(['consumir'|S],S).
-verbo_infinitivo(['a correr'|S],S).
-verbo_infinitivo(['a nadar'|S],S).
-verbo_infinitivo(['a caminar'|S],S).
+verbo_infinitivo(['a', 'correr'|S],S).
+verbo_infinitivo(['a', 'nadar'|S],S).
+verbo_infinitivo(['a', 'caminar'|S],S).
 verbo_infinitivo(['hacer'|S],S).
 verbo_infinitivo(['estar'|S],S).
 verbo_infinitivo(['seguir'|S],S).
