@@ -153,7 +153,7 @@ verbo_transitivo(t,s,['gusta'|S],S).
 pronombre(p,s,n,['Yo'|S],S).
 pronombre(p,s,n,['yo'|S],S).
 pronombre(p,s,n,['Me'|S],S).
-pronombre(t,s,n,['Me'|S],S).
+pronombre(p,s,n,['me'|S],S).
 
 %agradecimiento: Son todas las expresiones de agradecimiento que permite colocar en las oraciones,
 %Estan dados por agradecimiento(['agradecimiento'|S],S)
